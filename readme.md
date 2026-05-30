@@ -4,7 +4,7 @@ Extremely basic static site generation for posts, converting Markdown to HTML. C
 
 ## How it works
 
-Supply some markdown files and a html page template, and then the script converts your file into valid html and places it into a copy of the template, ensuring every page looks the same across your blog.
+Supply some markdown files and a html page template, and then the script converts your file into valid HTML and places it into a copy of the template, ensuring every page looks the same across your posts.
 
 ## How to use
 
@@ -12,6 +12,7 @@ Supply some markdown files and a html page template, and then the script convert
     * Markdown files should be titled in the format `YYYY-MM-DD-title-goes-here.md`
     * You can skip the date but this reduces the variables you can use later (see `--dateof`)
     * Any spaces will be converted to `-` for the final built files
+
 2. Create the same folder structure but with `posts` instead of `_posts` (Script currently doesn't create the output directory on its own)
 3. Create a `posts.htemplate` file containing the layout of your page
     You can use the following variables inside this template file:
@@ -24,7 +25,11 @@ Supply some markdown files and a html page template, and then the script convert
     | --year   | Uses the current year                                                 |
 
 4. For each subfolder inside your `_posts` folder, you may create a template page that links to all pages within it named after the folder (e.g `./_posts/blogs` becomes `./blogs.html` on the root using `blogs.htemplate`).
-5. To create each entry link on such a page, you need to tell Staticlyh what part of the html page to duplicate and fill in. Below is an example for a `blogs.htemplate` like above:
+    * If you are not using subfolders inside `_posts`, then create the file `.htemplate` on the root
+        * You can *only* do this if not using subfolders!
+        * The output page will be called `posts.html`
+
+5. To create each entry link on such a page, you need to tell Staticlyh what part of the HTML page to duplicate and fill in. Below is an example for a `blogs.htemplate` like above:
 
     ```html
         <main>
@@ -61,7 +66,7 @@ Supply some markdown files and a html page template, and then the script convert
 ## Notes
 
 * Windows style paths were not tested as I use Linux.
-* This is probably not the best tool for the job if you want a proper website of your own, as this requires a very specific website setup and many parts of your website still need to be copy-pasted around. Consider trying out something like [Jekyll](https://jekyllrb.com/) or similar.
+* This is probably not the best tool for the job if you want a proper website of your own, as this requires a very specific website setup and many parts of your website still need to be copy-pasted around. Consider trying out something like [Jekyll](https://jekyllrb.com/) or similar. This was just made for fun! Feel free to use it though if you really want to...
 
 ## AI Disclaimer
 

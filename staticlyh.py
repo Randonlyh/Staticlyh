@@ -76,8 +76,11 @@ def build():
 		with open(html_files[i], 'w', encoding="utf-8") as output:
 			output.write(out)
 	
-	for entry in folders:
-		create_link_page(entry, path, md_files, html_files, title, date_of)
+	if not folders:
+		create_link_page("", path, md_files, html_files, title, date_of)
+	else:
+		for entry in folders:
+			create_link_page(entry, path, md_files, html_files, title, date_of)
 	
 	print("All done!")
 	return
@@ -90,6 +93,11 @@ def gather_files(path='.'):
 				folders.append(entry)
 
 	list_of_files = []
+	if not folders:
+		for file in path.iterdir():
+			if str(file).endswith(".md"):
+				list_of_files.append(str(file))
+	
 	for folder in folders:
 		for file in folder.iterdir():
 			if str(file).endswith(".md"):
@@ -131,8 +139,9 @@ def create_link_page(name, path, md_files, html_files, title, date):
 	for i in range(len(md_files)):
 		post_split = html_files[i].split("/")
 		
-		if post_split[-2] != name:
-			continue
+		if name != "":
+			if post_split[-2] != name:
+				continue
 		
 		print("Adding: " +  html_files[i] + " to " + name + ".html")
 		text = ""
@@ -148,7 +157,10 @@ def create_link_page(name, path, md_files, html_files, title, date):
 
 		# Getting the page link
 		link_split = html_files[i].split("/")
-		link = link_split[-3] + "/" + link_split[-2] + "/" + link_split[-1]
+		if name == "":
+			link = link_split[-2] + "/" + link_split[-1]
+		else:
+			link = link_split[-3] + "/" + link_split[-2] + "/" + link_split[-1]
 
 		# Pasting in other page info
 		out = out.replace("/--", repeatable)
@@ -160,8 +172,12 @@ def create_link_page(name, path, md_files, html_files, title, date):
 	out = out.replace("--/", "")
 	out = out.replace("/--", "")
 
-	with open(path + name + ".html", 'w', encoding="utf-8") as page:
-		page.write(out)
+	if name == "":
+		with open(path + "posts.html", 'w', encoding="utf-8") as page:
+			page.write(out)
+	else:
+		with open(path + name + ".html", 'w', encoding="utf-8") as page:
+			page.write(out)
 	
 	return
 
