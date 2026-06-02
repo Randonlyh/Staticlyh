@@ -60,7 +60,6 @@ def build():
 			title.append(input.readline())
 			text = input.read()
 		
-		print(title)
 		print("Creating: " + html_files[i])
 
 		# Parsing out the title
