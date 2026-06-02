@@ -34,7 +34,11 @@ def build():
 				entry_split = str(entry).split("/")
 				folders.append(entry_split[-1])
 
+	# Flip the list for later when link pages are being generated (newest post will appear first)
+	md_files = list(reversed(md_files))
+	
 	# Calculate destination paths and store date if it exists in the original filename
+
 	html_files = md_files.copy()
 	date_of = list()
 	date_exists = list()
