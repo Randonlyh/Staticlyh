@@ -19,7 +19,7 @@ Supply some markdown files and a html page template, and then the script convert
 
     | Variable | Usage                                                                 |
     | -------- | --------------------------------------------------------------------- |
-    | --title  | Uses the name of the Markdown file                                    |
+    | --title  | Uses the first line of the Markdown file                              |
     | --text   | The contents of the Markdown file are placed here (Converted to HTML) |
     | --dateof | Adds the date of the Markdown file from the filename (if it exists)   |
     | --year   | Uses the current year                                                 |
@@ -50,7 +50,7 @@ Supply some markdown files and a html page template, and then the script convert
 
     | Variable       | Usage                                                                                                                |
     | -------------- | -------------------------------------------------------------------------------------------------------------------- |
-    | --title        | Uses the name of the referenced Markdown file                                                                        |
+    | --title        | Uses the first line of the referenced Markdown file                                                                  |
     | --path         | Puts in the final file path of the referenced page                                                                   |
     | --description  | The first 200 characters of the referenced Markdown file are placed here, converted to HTML and removing any headers |
     | --dateof       | Adds the date of the referenced Markdown file from the filename (if it exists)                                       |

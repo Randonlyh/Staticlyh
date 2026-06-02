@@ -57,18 +57,15 @@ def build():
 		
 	for i in range(len(md_files)):
 		with open(md_files[i], 'r', encoding="utf-8") as input:
+			title.append(input.readline())
 			text = input.read()
 		
+		print(title)
 		print("Creating: " + html_files[i])
-		# Parsing out the title
-		path_split = md_files[i].split("/")
-		title.append(path_split[-1])
 
-		if date_exists[i] == True:
-			title[i] = title[i][11:]
-		
-		title[i] = title[i].replace(".md", "")
-		title[i] = title[i].replace("-", " ")
+		# Parsing out the title
+		title[i] = title[i].replace("# ", "")
+		title[i] = title[i].replace("\n", "")
 
 		# Overwriting the template with data
 		out = template
@@ -151,6 +148,7 @@ def create_link_page(name, path, md_files, html_files, title, date):
 		text = ""
 
 		with open(md_files[i], 'r', encoding='utf-8') as page:
+			page.readline()
 			text = page.read()
 		
 		# Preview of the post
