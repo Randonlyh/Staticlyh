@@ -35,8 +35,9 @@ def build():
 				folders.append(entry_split[-1])
 
 	# Flip the list for later when link pages are being generated (newest post will appear first)
+	print(md_files)
 	md_files = list(reversed(md_files))
-	
+	print(md_files)
 	# Calculate destination paths and store date if it exists in the original filename
 
 	html_files = md_files.copy()
@@ -98,12 +99,12 @@ def gather_files(path='.'):
 
 	list_of_files = []
 	if not folders:
-		for file in path.iterdir():
+		for file in sorted(path.iterdir()):
 			if str(file).endswith(".md"):
 				list_of_files.append(str(file))
 	
 	for folder in folders:
-		for file in folder.iterdir():
+		for file in sorted(folder.iterdir()):
 			if str(file).endswith(".md"):
 				list_of_files.append(str(file))
 	
