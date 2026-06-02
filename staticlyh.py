@@ -35,9 +35,8 @@ def build():
 				folders.append(entry_split[-1])
 
 	# Flip the list for later when link pages are being generated (newest post will appear first)
-	print(md_files)
 	md_files = list(reversed(md_files))
-	print(md_files)
+
 	# Calculate destination paths and store date if it exists in the original filename
 
 	html_files = md_files.copy()
