@@ -118,13 +118,14 @@ def find_date(filename):
 
 def create_link_page(name, path, md_files, html_files, title, date):
 	out = []
-	path_obj = Path(path + name + ".htemplate")
+	path_obj = Path(path + "/" + name + ".htemplate")
 	if not path_obj.exists():
 		print("Skipping: " + name + ".html (corresponding .htemplate does not exist)")
 		return
 
+	print("Link pages template path: " + str(path_obj))
 	print("Creating: " + name + ".html (links page)")
-	with open(path + name + ".htemplate", 'r', encoding="utf-8") as page:
+	with open(path_obj, 'r', encoding="utf-8") as page:
 		out = page.read()
 
 	out = out.replace("--year", datetime.datetime.now().strftime("%Y"))
